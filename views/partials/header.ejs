@@ -1,0 +1,45 @@
+<header>
+    <nav class="bg-white py-2 md:py-4">
+        <div class="container px-4 mx-auto md:flex md:items-center">
+
+            <div class="flex justify-between items-center">
+                <a href="/" class="font-bold text-3xl text-indigo-600">Expense Tracker</a>
+                <button
+                    class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden"
+                    id="navbar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0" id="navbar-collapse">
+                <a href="/" class="p-2 lg:px-4 md:mx-2 text-white rounded bg-indigo-600">Home</a>             
+                <% if(user !==null) { %>
+                    <a  href="/home"
+                        class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">
+                        <%= user.name %>
+                            </h3>
+                    </a>
+                    <a href="/clients/statementList"
+                        class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">View
+                        Statement</a>
+                    <a href="/users/logout"
+                        class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">Logout</a>
+                    <% } else { %>
+                        <a href="/users/login"
+                            class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">Login</a>
+                        <a href="/users/register"
+                            class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">Signup</a>
+                        <% } %>
+
+            </div>
+        </div>
+    </nav>
+    <a href="/">
+        <h1 class="text-white text-3xl font-bold">expenseTracker</h1>
+    </a>
+    <nav class="flex">
+
+
+    </nav>
+
+</header>

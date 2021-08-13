@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <%- include('partials/header') %>
+        <main class="px-12">
+            <section class="my-8">
+                <h1 class="text-4xl font-bold text-center mt-8">Savings Of this Month: <span class="text-green-500">
+                        <%= savings %>
+                    </span></h1>
+                <% if(balance) {%>
+                    <h2 class="text-4xl font-bold text-center mt-8">Savings of this particular search: <span
+                            class="text-red-500">
+                            <%= balance %>
+                        </span></h2>
+                    <% } else { %>
+                        <div class="grid place-items-center">
+                            <% if(incomes[0]) {%>
+                                <div class="flex flex-col mt-6  w-3/4">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden sm:rounded-lg">
+                                                <table class="min-w-full text-sm text-black">
+
+                                                    <thead class="bg-blue-500 text-xs text-white uppercase font-medium">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th scope="col" class="px-6 py-3 text-left tracking-wider">
+                                                                Income
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left tracking-wider">
+                                                                Amount
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3 text-left tracking-wider">
+
+                                                            </th>
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <% incomes.forEach((cv,i)=> { %>
+                                                        <tbody class="bg-white">
+
+                                                            <tr class="bg-indigo-600 text bg-opacity-20">
+                                                                <td class="pl-4">
+                                                                    <%= i+1 %>
+                                                                </td>
+
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                    <%= cv.incname %>
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                    <%= cv.amount %>
+                                                                </td>
+                                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                                    <%= %>
+                                                                        <a href="/income/<%= cv.id %>">Show Details </a>
+                                                                </td>
+
+
+
+                                                        </tbody>
+                                                        <% }) %>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }%>
+                                <% if(expenses[0]) {%>
+                                    <div class="flex flex-col mt-6 w-3/4 ">
+                                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                <div class="shadow overflow-hidden sm:rounded-lg">
+                                                    <table class="min-w-full text-sm text-black">
+
+                                                        <thead
+                                                            class="bg-blue-500 text-xs text-white uppercase font-medium">
+                                                            <tr>
+                                                                <th></th>
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 text-left tracking-wider">
+                                                                    Expense
+                                                                </th>
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 text-left tracking-wider">
+                                                                    Amount
+                                                                </th>
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 text-left tracking-wider">
+
+                                                                </th>
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <% expenses.forEach((cv,i)=> { %>
+                                                            <tbody class="bg-white">
+
+                                                                <tr class="bg-indigo-600 text bg-opacity-20">
+                                                                    <td class="pl-4">
+                                                                        <%= i+1 %>
+                                                                    </td>
+
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <%= cv.expname %>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <%= cv.amount %>
+                                                                    </td>
+                                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                                        <%= %>
+                                                                            <a href="/expense/<%= cv.id %>">Show Details
+                                                                            </a>
+                                                                    </td>
+
+
+
+                                                            </tbody>
+                                                            <% }) %>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }%>
+
+
+                        </div>
+
+                        <% if((expenses.length)===0 && (incomes.length===0)) { %>
+                            <h1 class="text-center text-3xl font-bold">No Records Available</h1>
+                            <% } %>
+            </section>
+            <section>
+
+
+                <div>
+
+                    <h2 class="text-4xl font-bold text-center mt-8">Savings of this particular search: <span
+                            class="text-red-500">0</span></h2>
+                    <% } %>
+                        <div class="text-center mt-6">
+                            <a href="/clients/statementList"
+                                class="bg-blue-500 hover:bg-blue-400 text-white font-bold p-2 rounded-lg text-xl">Reset</a>
+                        </div>
+                </div>
+
+
+
+            </section>
+
+            <div id="advanced_filters" class="m-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="bg-white shadow-md text-center">
+                    <div class="w-full p-2 flex bg-blue-500 text-white cursor-pointer relative">
+                        <p class="font-bold leading-5 w-11/12 text-md">Filter: per: Month</p>
+                        <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z" />
+                        </svg>
+                    </div>
+                    <div class="p-2 w-full relative inline-block">
+
+                        <form action="/clients/statementList/filterByMonth" method="GET">
+                        <input type="month" name="month"
+                            class="p-2 bg-gray-200 my-1 rounded-lg border-2 border-gray-300">
+                        <input type="submit" value="search"
+                            class="p-2 bg-blue-500 text-white font-bold my-1 rounded-lg hover:bg-blue-400">
+                        </form>
+
+                    </div>
+                </div>
+                <div class="bg-white shadow-md text-center">
+                    <div class="w-full p-2 flex bg-blue-500 text-white cursor-pointer relative">
+                        <p class="font-bold leading-5 w-11/12 text-md">Filter: per: Date</p>
+                        <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z" />
+                        </svg>
+                    </div>
+                    <div class="p-2 w-full relative inline-block">
+                        <form action="/clients/statementList/filterByDate" method="GET">
+                            <input type="date" name="startDate"
+                                class="p-2 bg-gray-200 my-1 rounded-lg border-2 border-gray-300">
+                            <input type="date" name="endDate"
+                                class="p-2 bg-gray-200 my-1 rounded-lg border-2 border-gray-300">
+                            <input type="submit" value="Search"
+                                class="p-2 bg-blue-500 text-white font-bold my-1 rounded-lg hover:bg-blue-400">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-md text-center">
+                    <div class="w-full p-2 flex bg-blue-500 text-white cursor-pointer relative">
+                        <p class="font-bold leading-5 w-11/12 text-md">Filter: per: Date, Income and Expense Category</p>
+                        <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z" />
+                        </svg>
+                    </div>
+                    <div class="flex-col">
+                        <form action="/clients/statementList/filterByDateAndCategory" method="POST">
+                            <input type="date" name="startDate"
+                                class="p-2 bg-gray-200 my-2 rounded-lg border-2 border-gray-300">
+                            <input type="date" name="endDate"
+                                class="p-2 bg-gray-200 my-2 rounded-lg border-2 border-gray-300">
+                            <input type="text" name="incSource" placeholder="Income Source" required
+                                class="p-2 bg-gray-200 my-2 rounded-lg border-2 border-gray-300">
+                            <input type="text" name="expCategory" placeholder="Expense Category" required
+                                class="p-2 bg-gray-200 my-2 rounded-lg border-2 border-gray-300">
+                            <input type="submit" value="search"
+                                class="p-2 bg-blue-500 text-white font-bold my-2 rounded-lg hover:bg-blue-400">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+
+</body>
+
+</html>

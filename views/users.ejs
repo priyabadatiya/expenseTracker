@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/styles/style.css' />
+</head>
+<body>
+<%- include('partials/header') -%>
+<main class="m-20">
+    <h1 class="text-3xl text-blue-600 text-center mb-5 mt-5">Welcome to User Page</h1>
+    <% users.forEach(user =>  { %>
+        <p><%= user.name %></p>
+    <% }) %>
+
+    <%- include('partials/footer') -%>
+</main>
+</body>
+</html>
