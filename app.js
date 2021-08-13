@@ -20,11 +20,9 @@ var incomeRouter = require('./routes/income');
 var expenseRouter = require('./routes/expense');
 var auth = require('./middlewares/auth');
 
-
-// Connect with database
-mongoose.connect('mongodb://localhost/expenseTracker', {useNewUrlParser: true, useUnifiedTopology: true}, (err) => {
-  console.log(err ? err: "Connected to Database");
-})
+mongoose.connect(process.env.MONGO_URI, function (err) {
+  console.log('mongodb connected ?', err ? false : true);
+});
 
 require('./modules/passport');
 
@@ -75,5 +73,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+app.listen(process.env.PORT || 3000);
 
 module.exports = app;
