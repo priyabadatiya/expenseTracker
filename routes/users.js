@@ -42,9 +42,23 @@ router.post('/register', (req, res, next) => {
       from: 'expensetrackerbypiku@gmail.com',
       to: email,
       subject: 'Verification Email',
-      html: `<h2>${req.body.random}</h2>
-              <h3>Click On the this http://localhost:3000/users/verifyEmail link to verify your email and login </h3>`,
-
+      html:`<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+      <div style="margin:50px auto;width:70%;padding:20px 0">
+        <div style="border-bottom:1px solid #eee">
+          <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Expense Tracker</a>
+        </div>
+        <p style="font-size:1.1em">Hi,</p>
+        <p>Thank you for choosing Expense Tracker. Use the following Verification Code to complete your Sign Up procedures.</p>
+        <h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${req.body.random}</h2>
+        <p style="font-size:0.9em;">Regards,<br />Priyanka Badatiya</p>
+        <hr style="border:none;border-top:1px solid #eee" />
+        <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+          <p>Expense Tracker by piku</p>
+          <p>AltCampus</p>
+          <p>Dharamshala</p>
+        </div>
+      </div>
+    </div>`
     }
 
     transporter.sendMail(mailData, function (err, info) {
