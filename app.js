@@ -43,7 +43,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: "mongodb://127.0.0.1:27017/expenseTracker1"
+    mongoUrl: process.env.MONGO_URI
   })
 }));
 
